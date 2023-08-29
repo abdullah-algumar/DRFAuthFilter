@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'dj_rest_auth',
+    'rest_framework.authtoken',
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'dj_rest_auth',
     'dj_rest_auth.registration',
     'rest',
 ]
@@ -49,6 +51,19 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ]
+}
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+
+ACCOUNT_EMAIL_REQUIRED = False
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
