@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from utils.models import BaseModel
-
+from django_countries.fields import CountryField
 
 
 class Kurulus(BaseModel):
@@ -15,7 +15,7 @@ class Kurulus(BaseModel):
     name = models.CharField(max_length=50)
     logo = models.ImageField(upload_to='logos/', blank=True, null=True)
     type = models.CharField(max_length=3, choices=KURULUS_TYPE_CHOICES)
-    country = models.CharField(max_length=50)
+    country = CountryField()
     date = models.DateField()
     employees = models.IntegerField()
 

@@ -53,7 +53,7 @@ class KurulusViewSetTestCase(TestCase):
         self.kurulus_data = {
             'name': 'Test Kurulus',
             'type': 'S',
-            'country': 'Test Country',
+            'country': 'TR',
             'date': '2023-08-30',
             'employees': 100
         }
@@ -63,7 +63,7 @@ class KurulusViewSetTestCase(TestCase):
         data = {
             'name': 'New Test Kurulus',
             'type': 'S',
-            'country': 'New Test Country',
+            'country': 'IQ',
             'date': '2023-08-30',
             'employees': 150
         }

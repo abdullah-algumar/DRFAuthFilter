@@ -47,7 +47,7 @@ class KurulusViewSet(ModelViewSet):
 class KurulusListView(GenericAPIView):
     permission_classes = [AllowAny]
     serializer_class = KurulusSerializer
-    filter_backends = [DjangoFilterBackend]
+    # filter_backends = [DjangoFilterBackend]
     filterset_class = KurulusFilter
 
     def get_queryset(self):

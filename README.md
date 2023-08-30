@@ -57,3 +57,19 @@ DATABASE_PORT=5432
 ## on the main folder of project run this command
 
 `docker-compose up -d --build`
+
+# Run the Unittest for project
+
+## on the main folder of project run this command
+
+`python3 manage.py test`
+
+# Create the User and Kurulus objects using command
+
+## Create User:
+
+`python3 manage.py create_user`
+
+## Create Kurulus:
+
+`python3 manage.py populatedata`
