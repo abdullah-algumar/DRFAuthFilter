@@ -59,7 +59,7 @@ class KurulusListView(GenericAPIView):
         return Response(serializer.data)
 
 class SubscribeViewSet(ModelViewSet):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     serializer_class = SubscribeSerializer
     queryset = Subscribe.objects.all()
 
