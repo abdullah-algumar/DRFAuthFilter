@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'rest',
+    'drf_yasg',
 ]
 
 AUTHENTICATION_BACKENDS = (
