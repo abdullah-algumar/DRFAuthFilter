@@ -132,6 +132,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": os.environ.get("POSTGRES_DB", "djangodrfdb"),
+#         "USER": os.environ.get("POSTGRES_USER", "djangodrfuserr"),
+#         "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "4g247!5XN,.^4wh2b"),
+#         "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
+#         "PORT": os.environ.get("POSTGRES_PORT", "5432")
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -13,7 +13,7 @@ class Kurulus(BaseModel):
         ('STK', 'STK'),
     )
     name = models.CharField(max_length=50)
-    logo = models.ImageField(upload_to='logos/')
+    logo = models.ImageField(upload_to='logos/', blank=True, null=True)
     type = models.CharField(max_length=3, choices=KURULUS_TYPE_CHOICES)
     country = models.CharField(max_length=50)
     date = models.DateField()
