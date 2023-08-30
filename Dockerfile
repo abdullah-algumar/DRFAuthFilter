@@ -5,5 +5,9 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /core
 COPY . /core
 
-RUN pip install -r requirements.txt
-CMD ["bash","/IstanbulBorsa/docker-entrypoint.sh"]
+RUN pip install -r requirments.txt
+
+EXPOSE 8000
+
+CMD ["bash","/core/docker-entrypoint.sh"]
+
