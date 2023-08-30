@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +47,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'dj_rest_auth',
     'dj_rest_auth.registration',
+    'django_filters',
+    'corsheaders',
     'rest',
 ]
 
@@ -53,10 +58,25 @@ AUTHENTICATION_BACKENDS = (
 )
 
 REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_RATES': {
+        'verify_renter': '50/day',
+    },
+    
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
+        'rest_framework.authentication.SessionAuthentication',
         "rest_framework.authentication.TokenAuthentication",
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
+    
+    
 }
+
+
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
@@ -64,6 +84,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 
 ACCOUNT_EMAIL_REQUIRED = False
 
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,6 +94,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -80,7 +102,9 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'venv/Lib/site-packages/rest_framework/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,6 +116,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -143,7 +168,19 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(settings.BASE_DIR, 'media', 'uploads')
+
+
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS settings
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
