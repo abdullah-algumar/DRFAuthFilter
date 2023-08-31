@@ -25,7 +25,6 @@
 ```
 touch .env
 ```
-
 ```
 DEBUG=True
 SECRET_KEY=<secret-key>
@@ -51,12 +50,6 @@ DATABASE_PORT=5432
 ## Run the server:
 
 `python3 manage.py runserver`
-
-# Run with Docker
-
-## on the main folder of project run this command
-
-`docker-compose up -d --build`
 
 # Run the Unittest for project
 
